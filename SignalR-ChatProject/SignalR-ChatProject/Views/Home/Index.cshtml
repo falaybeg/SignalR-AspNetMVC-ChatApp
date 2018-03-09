@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Chat Project";
+}
+
+<h4 id="onlineUser"></h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Users</h3>
+        <ul id="user"></ul>
+    </div>
+
+    <div class="col-md-4">
+        <br />
+        <input type="text" id="txt" class="form-control" />
+        <button id="send" class="btn btn-success">Send</button>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Messages</h3>
+        <ul id="message"></ul>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/App/app.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+}

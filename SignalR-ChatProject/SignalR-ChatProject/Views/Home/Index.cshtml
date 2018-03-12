@@ -2,7 +2,6 @@
     ViewBag.Title = "Chat Project";
 }
 
-<h4 id="onlineUser"></h4>
 
 <div class="row">
     <div class="col-md-4">
@@ -22,10 +21,11 @@
     </div>
 </div>
 
-@section scripts{
+@section scripts
+{
 
-    <script src="~/App/app.js"></script>
     <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
     <script src="~/signalr/hubs"></script>
+    <script src="~/App/chat.js"></script>
 
 }

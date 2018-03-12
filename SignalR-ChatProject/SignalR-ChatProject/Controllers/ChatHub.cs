@@ -7,6 +7,7 @@ using Microsoft.AspNet.SignalR;
 
 namespace SignalR_ChatProject.Controllers
 {
+    [Authorize]
     public class ChatHub : Hub
     {
         public override Task OnConnected()
@@ -16,11 +17,10 @@ namespace SignalR_ChatProject.Controllers
         }
 
 
-        public void SenMessage(string message)
+        public void SendMessages(string message)
         {
-            Clients.Caller.messages("You: " + message);
-            Clients.Others.messages(Context.User.Identity.Name+" :" + message);
-
+            Clients.Caller.message("You: " + message);
+            Clients.Others.message(Context.User.Identity.Name+" :" + message);
         }
     }
 }

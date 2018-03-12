@@ -8,6 +8,9 @@ namespace SignalR_ChatProject
     {
         public void Configuration(IAppBuilder app)
         {
+            ConfigureAuth(app);
+
+            // here we registered our SignalR framework
             app.MapSignalR();
         }
     }

@@ -2,30 +2,39 @@
     ViewBag.Title = "Chat Project";
 }
 
+<input type="hidden" id="hdId">
+<input type="hidden" id="hdUserName"/>
+
 
 <div class="row">
-    <div class="col-md-4">
+    <h3>Welcome <strong id="userOnline"></strong> !</h3>
+    Online Member: <strong id="counter"></strong>
+</div>
+
+<div class="row">
+    <div class="col-md-4" id="divusers">
         <h3>Users</h3>
         <ul id="user"></ul>
+        <hr />
     </div>
-
-    <div class="col-md-4">
-        <br />
-        <input type="text" id="txt" class="form-control" />
-        <button id="send" class="btn btn-success">Send</button>
-    </div>
-
-    <div class="col-md-4">
-        <h3>Messages</h3>
-        <ul id="message"></ul>
+    
+    <div class="col-md-8"> <br />
+        <div id="messageWindow" style="border: 1px solid; height: 250px">
+            <h3>Messages</h3>
+            <ul id="message"></ul>
+        </div>
+        
+        <div>
+            <input type="text" id="txt" class="form-control" />
+            <button id="send" class="btn btn-success">Send</button>
+        </div>
     </div>
 </div>
 
+
 @section scripts
 {
-
     <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
     <script src="~/signalr/hubs"></script>
     <script src="~/App/chat.js"></script>
-
 }

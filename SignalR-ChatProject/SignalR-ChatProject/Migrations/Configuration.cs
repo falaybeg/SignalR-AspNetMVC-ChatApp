@@ -9,7 +9,7 @@ namespace SignalR_ChatProject.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(SignalR_ChatProject.Models.ApplicationDbContext context)

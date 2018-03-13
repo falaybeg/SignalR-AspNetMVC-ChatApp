@@ -206,10 +206,15 @@
     <Compile Include="Migrations\201803091953082_CreateDatabase.Designer.cs">
       <DependentUpon>201803091953082_CreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803131543234_AddMessagesToDb.cs" />
+    <Compile Include="Migrations\201803131543234_AddMessagesToDb.Designer.cs">
+      <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\UserDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -292,6 +297,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803091953082_CreateDatabase.resx">
       <DependentUpon>201803091953082_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803131543234_AddMessagesToDb.resx">
+      <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

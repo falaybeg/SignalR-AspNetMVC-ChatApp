@@ -143,8 +143,8 @@ C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-C
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\bin\Microsoft.AI.Web.xml
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR_ChatProject.Migrations.CreateDatabase.resources
+C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR_ChatProject.Migrations.AddMessagesToDb.resources
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR-ChatProject.csproj.GenerateResource.Cache
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR-ChatProject.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR-ChatProject.dll
 C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR-ChatProject.pdb
-C:\Users\Admin\Documents\Visual Studio 2017\Projects\SignalR-SampleApp\SignalR-ChatProject\SignalR-ChatProject\obj\Debug\SignalR-ChatProject.csprojResolveAssemblyReference.cache

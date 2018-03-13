@@ -5,18 +5,14 @@
 
     chatHub.client.message = function(msg) {
 
+        debugger;
         $("#message").append("<li>" + msg + "</li>");
 
-        $("#messageWindow").animate({
-                scrollTop: $("#messageWindow")[0].scrollHeight
-            },
-            10);
     }
-
     $("#send").click(function() {
         var message = $("#txt").val();
         chatHub.server.sendMessages(message);
-        message.val("");
+        //message.val("");
     });
 
     chatHub.client.updatecounter = function(count) {
@@ -64,7 +60,6 @@
         $("#divusers").append(code);
 
     }
-
 
     chatHub.client.onUserDisconnected = function (id, username) {
 

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace SignalR_ChatProject.Models
 {
-    public class UserDetail
+    public class MessageDetail
     {
-        public string ConnectedId { get; set; }
         public string UserName { get; set; }
+        public string Message { get; set; }
     }
 }

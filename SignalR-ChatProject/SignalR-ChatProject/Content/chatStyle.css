@@ -1,0 +1,15 @@
+﻿#time {
+    float: right;
+}
+
+#divChatWindow {
+    overflow-y: scroll;
+    height: 300px;
+
+}
+
+#divusers {
+    height: 200px;
+    overflow-y: scroll;
+    display: block;
+}

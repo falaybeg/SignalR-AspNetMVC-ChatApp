@@ -15,6 +15,34 @@
 
 function registerEvents(chatHub) {
 
+
+
+    $('#btnGetHistory').click(function () {
+        $('#chatHistory').empty();
+        var loginname = $('#hdUserName').val();
+        var dateFrom = $('#dateFrom').val()
+        var dateTo = $('#dateTo').val()
+        var inputName = $('#inputName').val()
+        var code = "";
+        $.getJSON('/GetHistory?name=' + inputName + '&dtfrom=' + dateFrom + '&dtto=' + dateTo, function (result) {
+            $.each(result, function (i, field) {
+                code = "";
+                if (loginname == field["UserName"]) {
+                    code = $('<div class="message">' + field["sendTime"] + ' <strong><font color="forestgreen">' + field["UserName"] + ' :</font></strong> ' + field["Text"] + '</div>');
+                } else {
+                    code = $('<div class="message">' + field["sendTime"] + ' <strong>' + field["UserName"] + ' :</strong> ' + field["Text"] + '</div>');
+                }
+                $('#chatHistory').append(code);
+            });
+        });
+    });
+
+
+
+
+
+
+
     $("#btnSendMsg").click(function () {
 
         var msg = $("#txtMessage").val();

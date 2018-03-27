@@ -1,6 +1,7 @@
 ﻿<input type="hidden" id="hdId" />
 <input type="hidden" id="hdUserName" />
 <br />
+<div id="privateChat"></div>
 
 <div class="row">
     <div id="divChat" class="panel panel-default">
@@ -31,7 +32,7 @@
             </form>
         </div>
     </div>
-    
+
     <!--Chat History -->
     <div id="historyModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -50,7 +51,7 @@
                             <div class="form-group">
                                 <label class="col-sm-1">Isim</label>
                                 <input class="col-ms-offset-3" type="text" id="inputName" />
-                               
+
                             </div>
                         </div>
                     </div>
@@ -66,18 +67,63 @@
         </div>
     </div>
     <!--End Chat History-->
-    
+
 
 </div>
 
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="userprivate"></h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div id="divusers"></div>
+                    <input type="text" id="privateTxt" class="form-control" placeholder="Enter your message..." />
+                    <button id="privateSent" class="btn btn-success">Send</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
 @section scripts{
+
     <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
     <script src="~/App/chatJS.js"></script>
     <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/toastr.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    
+
     <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
     <link href="~/Content/toastr.css" rel="stylesheet" />
     <link href="~/Content/chatStyle.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.0.2/dist/loadingoverlay.min.js"></script>
+
+    <script>
+                //$(document).ready(function() {
+
+                //    $.LoadingOverlay("show");
+
+                //    setTimeout(function(){
+                //        $.LoadingOverlay("hide");
+                //    }, 2000);
+                //});
+    </script>
 }

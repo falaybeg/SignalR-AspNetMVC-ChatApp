@@ -15,14 +15,14 @@
 
 function registerEvents(chatHub) {
 
-
-
     $('#btnGetHistory').click(function () {
         $('#chatHistory').empty();
+
         var loginname = $('#hdUserName').val();
-        var dateFrom = $('#dateFrom').val()
-        var dateTo = $('#dateTo').val()
-        var inputName = $('#inputName').val()
+        var dateFrom = $('#dateFrom').val();
+        var dateTo = $('#dateTo').val();
+        var inputName = $('#inputName').val();
+
         var code = "";
         $.getJSON('Home/GetHistory?name=' + inputName + '&dtfrom=' + dateFrom + '&dtto=' + dateTo, function (result) {
             $.each(result, function (i, field) {
@@ -80,7 +80,6 @@ function registerClientMethods(chatHub) {
 
     chatHub.client.onNewUserConnected = function (id, name) {
         AddUser(chatHub, id, name);
-        toastr.success(name + " logged in", { timeOut: 1000 });
     }
 
     chatHub.client.onUserDisconnected = function (id, name) {
@@ -97,6 +96,7 @@ function registerClientMethods(chatHub) {
     chatHub.client.updatecounter = function (count) {
         $("#onlineMember").text(count);
     }
+
 }
 
 function AddUser(chatHub, id, name) {
@@ -106,10 +106,13 @@ function AddUser(chatHub, id, name) {
 
     if (userId === id) {
 
-        code = "<ul class='loginUser'>" + name + "</ul>";
+        code = "<div class='loginUser'>" + name + "</div>";
     }
     else {
-        code = "<ul id='" + id + "'>" + name + "</ul>";
+
+        code = "<a pid='" + id + "' onclick=test('"+id+"','"+name+"')>" + name + "</a>";
+
+      //  privateWindow(id, name);
     }
 
     $("#divusers").append(code);
@@ -134,3 +137,57 @@ function AddMessage(userName, message) {
     $("#divChatWindow").scrollTop(height);
 
 }
+
+function privateWindow(id,name) {
+
+    var div = '<div id="' + id + '" class="ui-widget-content draggable" rel="0">' +
+        '<div class="header">' +
+        '<div  style="float:right;">' +
+        '<img id="imgDelete"  style="cursor:pointer;" src="/Images/delete.png"/>' +
+        '</div>' +
+
+        '<span class="selText" rel="0">' + name + '</span>' +
+        '</div>' +
+        '<div id="divMessage" class="messageArea">' +
+
+        '</div>' +
+        '<div class="buttonBar">' +
+        '<input id="txtPrivateMessage" class="msgText" type="text"   />' +
+        '<input id="btnSendMessage" class="submitButton button" type="button" value="Send"   />' +
+        '</div>' +
+        '</div>';
+
+    var $div = $(div);
+
+    $("#privateChat").prepend($div);
+
+    $div.draggable({
+
+        handle: ".header",
+        stop: function () {
+
+        }
+    });
+
+}
+
+function test(id, name) {
+
+    $("#userprivate").text(name);
+    $('#myModal').modal('show');
+
+    $("#privateSent").click(function () {
+
+        var msg = $("#txtMessage").val();
+
+        if (msg.length > 0) {
+            chatHub.server.sendPrivateMessage(id, msg);
+            $("#privateTxt").val("").focus();
+        }
+
+    });
+
+}
+
+
+

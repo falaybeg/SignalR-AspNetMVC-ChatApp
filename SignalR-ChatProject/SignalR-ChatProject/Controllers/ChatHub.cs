@@ -14,20 +14,12 @@ using SignalR_ChatProject.Models;
 namespace SignalR_ChatProject.Controllers
 {
 
-    public class UserDetail
-    {
-        public string ConnectionId { get; set; }    
-        public string UserName { get; set; }
-    }
-
-
     [Microsoft.AspNet.SignalR.Authorize]
     public class ChatHub : Hub
     {
         static List<UserDetail> conUsers = new List<UserDetail>();
         static List<MessageDetail> currentMessages = new List<MessageDetail>();
         static ApplicationDbContext db = new ApplicationDbContext();
-
 
         public override Task OnConnected()
         {
@@ -39,19 +31,23 @@ namespace SignalR_ChatProject.Controllers
             if (userName == null)
                 return null;
 
-            if (conUsers.Count(x => x.ConnectionId == id) == 0)
+            if (conUsers.Count(x => x.ConnectedId == id) == 0)
             {
                 conUsers.Add(new UserDetail
                 {
-                    ConnectionId = id,
+                    ConnectedId = id,
                     UserName = userName
                 });
 
                 Clients.All.updatecounter(conUsers.Count);
                 Clients.All.totalMember(totalMember);
 
+
                 Clients.All.totalMessages(TotalMyMessages(true));
-                Clients.All.totalMymessages(TotalMyMessages(false));
+                Clients.All.todayMessages(TodayMyMessages(true));
+
+                Clients.Caller.totalMymessages(TotalMyMessages(false));
+                Clients.Caller.todayMyMessages(TodayMyMessages(false));
 
                 //Clients.All.todayMessages(totalMessage);
                 //Clients.All.todayMyMessages(totalMessage);
@@ -66,12 +62,13 @@ namespace SignalR_ChatProject.Controllers
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            var item = conUsers.FirstOrDefault(c => c.ConnectionId == Context.ConnectionId);
+            var item = conUsers.FirstOrDefault(c => c.ConnectedId == Context.ConnectionId);
             if (item != null)
             {
                 conUsers.Remove(item);
                 var id = Context.ConnectionId;
                 Clients.All.onUserDisconnected(id, item.UserName);
+
                 Clients.All.updatecounter(conUsers.Count);
 
             }
@@ -79,17 +76,18 @@ namespace SignalR_ChatProject.Controllers
             return base.OnDisconnected(stopCalled);
         }
 
+    
+
         public void SendMessageToAll(string userName, string message)
         {
             AddMessageInCache(userName, message);
             Clients.All.messageReceived(userName, message);
 
             Clients.All.totalMessages(TotalMyMessages(true));
-            Clients.All.totalMymessages(TotalMyMessages(false));
-
             Clients.All.todayMessages(TodayMyMessages(true));
-            Clients.All.todayMyMessages(TodayMyMessages(false));
 
+            Clients.Caller.totalMymessages(TotalMyMessages(false));
+            Clients.Caller.todayMyMessages(TodayMyMessages(false));
 
         }
 
@@ -132,20 +130,39 @@ namespace SignalR_ChatProject.Controllers
         {
             int messages = 0;
             string userId = Context.User.Identity.GetUserId();
-            DateTime today = DateTime.Today;
+            DateTime today = DateTime.Now.Date;
 
             if (total == true)
             {
                 messages = db.Message
-                    .Where(x=> DbFunctions.TruncateTime(x.SendTime.Date) == DateTime.Now.Date)
+                    .Where(b => (b.SendTime.Year == today.Year && b.SendTime.Month == today.Month && b.SendTime.Day == today.Day))
                     .Count();
             }
             else
             {
-                messages = db.Message.Where(x => x.UserId == userId).Where(x=> x.SendTime == DateTime.Now.Date).Count();
+                messages = db.Message
+                    .Where(u=> u.UserId == userId)
+                    .Where(b => (b.SendTime.Year == today.Year && b.SendTime.Month == today.Month && b.SendTime.Day == today.Day))
+                    .Count();
             }
 
             return messages;
+        }
+
+
+        private void SendPrivateMessage(string toUserId, string message)
+        {
+            string fromUserId = Context.ConnectionId;
+
+            var toUser = conUsers.FirstOrDefault(x => x.ConnectedId == toUserId);
+            var fromUser = conUsers.FirstOrDefault(x => x.ConnectedId == fromUserId);
+
+            if (toUserId != null && fromUser != null)
+            {
+                Clients.Caller(toUserId).sendPrivateMessage(fromUserId, fromUser.UserName, message);
+
+                Clients.Caller.sendPrivateMessage(toUserId, fromUser.UserName, message);
+            }
         }
 
     }

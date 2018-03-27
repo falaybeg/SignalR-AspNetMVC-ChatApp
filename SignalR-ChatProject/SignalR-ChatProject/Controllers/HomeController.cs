@@ -7,6 +7,7 @@ using SignalR_ChatProject.Models;
 
 namespace SignalR_ChatProject.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -18,34 +19,34 @@ namespace SignalR_ChatProject.Controllers
 
         public JsonResult GetHistory(string name = "", string dtfrom = "", string dtto = "")
         {
-            IQueryable<Messages> messageslist;
+            var messageslist = (from m in db.Message
+                           join u in db.Users on m.UserId equals u.Id
+                           select new
+                           {
+                               SendTime = m.SendTime,
+                               Message = m.Message,
+                               Username = u.UserName
+                           });
 
-            messageslist = db.Message;
             DateTime dtf;
             DateTime dtt;
 
-            // Kodu duzenle ve Join ile yaparak query olustur. 
-
             if (DateTime.TryParse(dtfrom, out dtf))
-            {
-                messageslist = messageslist.Where(x => x.SendTime >= dtf);
-            }
+                messageslist = messageslist.Where(x => x.SendTime >= dtf); 
+
             if (DateTime.TryParse(dtto, out dtt))
-            {
-                messageslist = messageslist.Where(x => x.SendTime <= dtt);
-            }
+                messageslist = messageslist.Where(x => x.SendTime <= dtt); 
 
             if (!string.IsNullOrEmpty(name))
-            {
-                messageslist = messageslist.Where(x => x.UserId == name);
-            }
+                messageslist = messageslist.Where(x => x.Username == name);
 
             var messages = messageslist.ToList().Select(s => new
             {
                 sendTime = s.SendTime.ToString("dd/MM/yyyy HH:mm:ss"),
                 Text = s.Message,
-                UserName = s.UserId
+                UserName = s.Username
             });
+             
             return Json(messages, JsonRequestBehavior.AllowGet);
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -31,6 +33,8 @@ namespace SignalR_ChatProject.Controllers
         {
             var id = Context.ConnectionId;
             var userName = Context.User.Identity.Name;
+            int totalMember = db.Users.Count();
+          
 
             if (userName == null)
                 return null;
@@ -44,9 +48,19 @@ namespace SignalR_ChatProject.Controllers
                 });
 
                 Clients.All.updatecounter(conUsers.Count);
+                Clients.All.totalMember(totalMember);
+
+                Clients.All.totalMessages(TotalMyMessages(true));
+                Clients.All.totalMymessages(TotalMyMessages(false));
+
+                //Clients.All.todayMessages(totalMessage);
+                //Clients.All.todayMyMessages(totalMessage);
+                //Clients.All.totalMember(totalMessage);
+
                 Clients.Caller.onConnected(id, userName, conUsers, currentMessages);
                 Clients.AllExcept(id).onNewUserConnected(id, userName);
             }
+
             return base.OnConnected();
         }
 
@@ -69,6 +83,14 @@ namespace SignalR_ChatProject.Controllers
         {
             AddMessageInCache(userName, message);
             Clients.All.messageReceived(userName, message);
+
+            Clients.All.totalMessages(TotalMyMessages(true));
+            Clients.All.totalMymessages(TotalMyMessages(false));
+
+            Clients.All.todayMessages(TodayMyMessages(true));
+            Clients.All.todayMyMessages(TodayMyMessages(false));
+
+
         }
 
         private void AddMessageInCache(string userName, string message)
@@ -86,6 +108,44 @@ namespace SignalR_ChatProject.Controllers
 
             if (currentMessages.Count > 100)
                 currentMessages.RemoveAt(0);
+        }
+
+
+        private int TotalMyMessages(bool total)
+        {
+            int messages = 0;
+            string userId =  Context.User.Identity.GetUserId();
+
+            if (total == true)
+            {
+                messages = db.Message.Count();
+            }
+            else
+            {
+                messages = db.Message.Where(x => x.UserId == userId).Count();
+            }
+
+            return messages;
+        }
+
+        private int TodayMyMessages(bool total)
+        {
+            int messages = 0;
+            string userId = Context.User.Identity.GetUserId();
+            DateTime today = DateTime.Today;
+
+            if (total == true)
+            {
+                messages = db.Message
+                    .Where(x=> DbFunctions.TruncateTime(x.SendTime.Date) == DateTime.Now.Date)
+                    .Count();
+            }
+            else
+            {
+                messages = db.Message.Where(x => x.UserId == userId).Where(x=> x.SendTime == DateTime.Now.Date).Count();
+            }
+
+            return messages;
         }
 
     }

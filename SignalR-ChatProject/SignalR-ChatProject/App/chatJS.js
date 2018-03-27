@@ -24,7 +24,7 @@ function registerEvents(chatHub) {
         var dateTo = $('#dateTo').val()
         var inputName = $('#inputName').val()
         var code = "";
-        $.getJSON('/GetHistory?name=' + inputName + '&dtfrom=' + dateFrom + '&dtto=' + dateTo, function (result) {
+        $.getJSON('Home/GetHistory?name=' + inputName + '&dtfrom=' + dateFrom + '&dtto=' + dateTo, function (result) {
             $.each(result, function (i, field) {
                 code = "";
                 if (loginname == field["UserName"]) {
@@ -36,11 +36,6 @@ function registerEvents(chatHub) {
             });
         });
     });
-
-
-
-
-
 
 
     $("#btnSendMsg").click(function () {
@@ -111,10 +106,10 @@ function AddUser(chatHub, id, name) {
 
     if (userId === id) {
 
-        code = "<li class='loginUser'>" + name + "</li>";
+        code = "<ul class='loginUser'>" + name + "</ul>";
     }
     else {
-        code = "<li id='" + id + "'>" + name + "</li>";
+        code = "<ul id='" + id + "'>" + name + "</ul>";
     }
 
     $("#divusers").append(code);
@@ -127,10 +122,10 @@ function AddMessage(userName, message) {
     var code = "";
 
     if (userName === loginName) {
-        code = "<li class='message'><span class='loginUserName'>" + userName + "</span>: " + message + "</li>";
+        code = "<ul class='message'><span class='loginUserName'>" + userName + "</span>: " + message + "</ul>";
     }
     else {
-        code = "<li class='message'><span class='userName' style='font-weight: bold'>" + userName + "</span>: " + message + "</li>";
+        code = "<ul class='message'><span class='userName' style='font-weight: bold'>" + userName + "</span>: " + message + "</ul>";
     }
 
     $("#divChatWindow").append(code);

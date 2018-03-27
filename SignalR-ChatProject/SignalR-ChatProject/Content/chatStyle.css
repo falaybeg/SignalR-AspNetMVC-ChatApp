@@ -13,3 +13,13 @@
     overflow-y: scroll;
     display: block;
 }
+
+.loginUser .userName 
+{
+    font-weight: bold;
+}
+
+.loginUserName {
+    font-weight: bold;
+    color: forestgreen;
+}

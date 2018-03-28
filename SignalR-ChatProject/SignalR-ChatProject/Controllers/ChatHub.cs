@@ -70,7 +70,6 @@ namespace SignalR_ChatProject.Controllers
                 Clients.All.onUserDisconnected(id, item.UserName);
 
                 Clients.All.updatecounter(conUsers.Count);
-
             }
 
             return base.OnDisconnected(stopCalled);
@@ -163,6 +162,22 @@ namespace SignalR_ChatProject.Controllers
 
                 Clients.Caller.sendPrivateMessage(toUserId, fromUser.UserName, message);
             }
+        }
+
+
+        public void SendNotification(string message)
+        {
+            string username = Context.User.Identity.GetUserName();
+            string userId = Context.User.Identity.GetUserId();
+
+            AddNotification(userId, message);
+            Clients.All.receiveNotification(username, message, DateTime.Now.ToString());
+        }
+
+        private void AddNotification(string id, string message)
+        {
+            db.Notification.Add(new Notification { UserId = id, NotificationMessage = message, SendTime = DateTime.Now });
+            db.SaveChanges();
         }
 
     }

@@ -26,7 +26,7 @@
 
         <div class="panel-footer">
             <form class="form-inline">
-                <input type="text" id="txtMessage" class="form-control" placeholder="Enter your message..." />
+                <textarea id="txtMessage" class="form-control" placeholder="Enter your message..."></textarea>
                 <button id="btnSendMsg" class="btn btn-success">Send</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historyModal">View History</button>
             </form>
@@ -72,7 +72,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Private Message -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -108,9 +108,7 @@
     <script src="~/App/chatJS.js"></script>
     <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/toastr.js"></script>
-    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 
-    <link href="~/Content/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
     <link href="~/Content/toastr.css" rel="stylesheet" />
     <link href="~/Content/chatStyle.css" rel="stylesheet" />
 

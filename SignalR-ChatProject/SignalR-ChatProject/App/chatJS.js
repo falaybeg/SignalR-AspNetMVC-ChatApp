@@ -65,8 +65,8 @@ function registerClientMethods(chatHub) {
         $("#hdUserName").val(username);
         $("#spanUser").text(username);
 
-        toastr.success(username + " logged in", { timeOut: 1000 });
-        toastr.options.showDuration = 10;
+        //toastr.success(username + " logged in", { timeOut: 1000 });
+        //toastr.options.showDuration = 10;
 
 
         for (i = 0; i < allUsers.length; i++) {
@@ -86,7 +86,7 @@ function registerClientMethods(chatHub) {
 
         $("#" + id).remove();
 
-        toastr.error(name + " logged off", { timeOut: 1000 });
+        //toastr.error(name + " logged off", { timeOut: 1000 });
     }
 
     chatHub.client.messageReceived = function (username, message) {
@@ -110,14 +110,13 @@ function AddUser(chatHub, id, name) {
     }
     else {
 
-        code = "<a pid='" + id + "' onclick=test('"+id+"','"+name+"')>" + name + "</a>";
+        code = "<div pid='" + id + "' onclick=test('" + id + "','" + name + "')>" + name + "</div>";
 
       //  privateWindow(id, name);
     }
 
     $("#divusers").append(code);
 }
-
 
 function AddMessage(userName, message) {
 
@@ -138,45 +137,12 @@ function AddMessage(userName, message) {
 
 }
 
-function privateWindow(id,name) {
-
-    var div = '<div id="' + id + '" class="ui-widget-content draggable" rel="0">' +
-        '<div class="header">' +
-        '<div  style="float:right;">' +
-        '<img id="imgDelete"  style="cursor:pointer;" src="/Images/delete.png"/>' +
-        '</div>' +
-
-        '<span class="selText" rel="0">' + name + '</span>' +
-        '</div>' +
-        '<div id="divMessage" class="messageArea">' +
-
-        '</div>' +
-        '<div class="buttonBar">' +
-        '<input id="txtPrivateMessage" class="msgText" type="text"   />' +
-        '<input id="btnSendMessage" class="submitButton button" type="button" value="Send"   />' +
-        '</div>' +
-        '</div>';
-
-    var $div = $(div);
-
-    $("#privateChat").prepend($div);
-
-    $div.draggable({
-
-        handle: ".header",
-        stop: function () {
-
-        }
-    });
-
-}
-
 function test(id, name) {
 
-    $("#userprivate").text(name);
+    $("#userprivate").text("To: "+  name);
     $('#myModal').modal('show');
 
-    $("#privateSent").click(function () {
+    $("#privateSent").dblclick(function () {
 
         var msg = $("#txtMessage").val();
 
@@ -188,6 +154,4 @@ function test(id, name) {
     });
 
 }
-
-
 

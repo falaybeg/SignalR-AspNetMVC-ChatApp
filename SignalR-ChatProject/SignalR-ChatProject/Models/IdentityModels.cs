@@ -21,6 +21,8 @@ namespace SignalR_ChatProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Messages> Message { get; set; }
+        public DbSet<Notification> Notification { get; set; }
+
 
         public ApplicationDbContext()
             : base("ChatProjectSignalR", throwIfV1Schema: false)

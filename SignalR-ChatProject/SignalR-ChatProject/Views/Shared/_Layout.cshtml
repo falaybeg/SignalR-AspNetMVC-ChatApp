@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/notification.css" rel="stylesheet" />
 </head>
 <body >
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,6 +23,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Chat Page", "Index", "Home")</li>
                     <li>@Html.ActionLink("Dashboard", "About", "Home")</li>
+                    <li>@Html.ActionLink("Notification", "Contact", "Home")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\ChatHub.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificationHub.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,12 +211,21 @@
     <Compile Include="Migrations\201803131543234_AddMessagesToDb.Designer.cs">
       <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803280848253_AddNotificationTable.cs" />
+    <Compile Include="Migrations\201803280848253_AddNotificationTable.Designer.cs">
+      <DependentUpon>201803280848253_AddNotificationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803281101546_UpdateDatabaseUser.cs" />
+    <Compile Include="Migrations\201803281101546_UpdateDatabaseUser.Designer.cs">
+      <DependentUpon>201803281101546_UpdateDatabaseUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageDetail.cs" />
     <Compile Include="Models\Messages.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\UserDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -223,6 +233,7 @@
   <ItemGroup>
     <Content Include="App\chatJS.js" />
     <Content Include="App\dashboardJS.js" />
+    <Content Include="App\notificationJS.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chatStyle.css" />
@@ -383,6 +394,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\notification.css" />
     <Content Include="Content\omicron_logo.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -547,6 +559,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803131543234_AddMessagesToDb.resx">
       <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803280848253_AddNotificationTable.resx">
+      <DependentUpon>201803280848253_AddNotificationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803281101546_UpdateDatabaseUser.resx">
+      <DependentUpon>201803281101546_UpdateDatabaseUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

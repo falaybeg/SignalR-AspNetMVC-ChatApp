@@ -23,16 +23,3 @@ chatHub.client.totalMember = function (count) {
     $("#totalMember").text(count);
 }
 
-
-//chatHub.client.totalmessage = function (count) {
-//    $("#todayMessage").text(count);
-//}
-
-//chatHub.client.totalmessage = function (count) {
-//    $("#todayMyMessage").text(count);
-//}
-
-//chatHub.client.totalmessage = function (count) {
-//    $("#totalMembers").text(count);
-//}
-

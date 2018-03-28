@@ -1,17 +1,79 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿<br />
+<div class="container">
+    <div class="row">
+        <form class="form-inline">
+            <textarea id="txtNotification" class="form-control" placeholder="Enter your message..."></textarea>
+            <button id="btnShare" class="btn btn-primary">Share</button>
+        </form>
+   
+        <div id="noti"></div>
+
+
+        </div>
+    </div>
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/App/notificationJS.js"></script>
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <div class="row col-sm-8">
+
+            <div class="message-item">
+                <div class="message-inner">
+                    <div class="message-head clearfix">
+                        <div class="avatar pull-left"><a href="./index.php?qa=user&qa_1=Oleg+Kolesnichenko"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"></a></div>
+                        <div class="user-detail">
+                            <h5 class="handle">Oleg Kolesnichenko</h5>
+                            <div class="post-meta">
+                                <div class="asker-meta">
+                                    <span class="qa-message-what"></span>
+                                    <span class="qa-message-when">
+                                        <span class="qa-message-when-data">28/03/2018 11:00:00</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="qa-message-content">
+                        Merhaba Arkadaslar Bugun Saat 5'te toplanti var Merhaba Arkadaslar Bugun Saat 5'te toplanti var Merhaba Arkadaslar Bugun Saat 5'te toplanti var
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+*@

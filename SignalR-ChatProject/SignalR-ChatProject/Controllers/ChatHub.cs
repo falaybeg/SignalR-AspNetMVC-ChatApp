@@ -42,16 +42,11 @@ namespace SignalR_ChatProject.Controllers
                 Clients.All.updatecounter(conUsers.Count);
                 Clients.All.totalMember(totalMember);
 
-
                 Clients.All.totalMessages(TotalMyMessages(true));
                 Clients.All.todayMessages(TodayMyMessages(true));
 
                 Clients.Caller.totalMymessages(TotalMyMessages(false));
                 Clients.Caller.todayMyMessages(TodayMyMessages(false));
-
-                //Clients.All.todayMessages(totalMessage);
-                //Clients.All.todayMyMessages(totalMessage);
-                //Clients.All.totalMember(totalMessage);
 
                 Clients.Caller.onConnected(id, userName, conUsers, currentMessages);
                 Clients.AllExcept(id).onNewUserConnected(id, userName);
@@ -180,5 +175,9 @@ namespace SignalR_ChatProject.Controllers
             db.SaveChanges();
         }
 
+        public void getTime()
+        {
+            Clients.Caller.setTime(DateTime.Now.ToString("h:mm:ss tt"));
+        }
     }
 }

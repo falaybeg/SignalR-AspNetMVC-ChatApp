@@ -3,14 +3,16 @@
 <br />
 <div id="privateChat"></div>
 
-<div class="row">
-    <div id="divChat" class="panel panel-default">
+
+
+<div class="row" background="~/Content/wallpaper4.png">
+    <div id="divChat" class="panel panel-default" >
         <div class="panel-heading">
             <div id="time">
-                <h5> <b>@DateTime.Now.ToString("HH:mm:ss")</b></h5>
+                <h5> <b id="clock"></b></h5>
                 <h6>@DateTime.Now.ToString("dd/MM/yyyy")</h6>
             </div>
-            <h3> Welcome <b><span id="spanUser"></span></b> !</h3>
+            <h3> Welcome  &nbsp;<b><span id="spanUser"></span></b> !</h3>
         </div>
 
         <div class="panel-body">

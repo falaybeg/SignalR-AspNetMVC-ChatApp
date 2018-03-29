@@ -27,5 +27,7 @@ namespace SignalR_ChatProject.Controllers
             db.SaveChanges();
         }
 
+      
+
     }
 }

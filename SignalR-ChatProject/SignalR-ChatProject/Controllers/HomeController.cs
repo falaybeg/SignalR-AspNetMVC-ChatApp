@@ -32,13 +32,18 @@ namespace SignalR_ChatProject.Controllers
             DateTime dtt;
 
             if (DateTime.TryParse(dtfrom, out dtf))
-                messageslist = messageslist.Where(x => x.SendTime >= dtf); 
-
+            {
+                messageslist = messageslist.Where(x => x.SendTime >= dtf);
+            }
             if (DateTime.TryParse(dtto, out dtt))
-                messageslist = messageslist.Where(x => x.SendTime <= dtt); 
+            {
+                messageslist = messageslist.Where(x => x.SendTime <= dtt);
+            }
 
             if (!string.IsNullOrEmpty(name))
+            {
                 messageslist = messageslist.Where(x => x.Username == name);
+            }
 
             var messages = messageslist.ToList().Select(s => new
             {
@@ -52,17 +57,13 @@ namespace SignalR_ChatProject.Controllers
 
 
 
-        public ActionResult About()
+        public ActionResult Dashboard()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Notification()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

@@ -4,7 +4,15 @@
 
     registerClientMethods(chatHub);
 
+    chatHub.client.setTime = function (time) {
+        $('#clock').html(time);
+    };
+
     $.connection.hub.start().done(function () {
+
+        setInterval(function () {
+            chatHub.server.getTime();
+        }, 1000);
 
         registerEvents(chatHub);
 
@@ -28,9 +36,9 @@ function registerEvents(chatHub) {
             $.each(result, function (i, field) {
                 code = "";
                 if (loginname == field["UserName"]) {
-                    code = $('<div class="message">' + field["sendTime"] + ' <strong><font color="forestgreen">' + field["UserName"] + ' :</font></strong> ' + field["Text"] + '</div>');
+                    code = $('<div class="message">[' + field["sendTime"] + ']  <strong><font color="forestgreen">' + field["UserName"] + ' :</font></strong> ' + field["Text"] + '</div>');
                 } else {
-                    code = $('<div class="message">' + field["sendTime"] + ' <strong>' + field["UserName"] + ' :</strong> ' + field["Text"] + '</div>');
+                    code = $('<div class="message">[' + field["sendTime"] + ']  <strong>' + field["UserName"] + ' :</strong> ' + field["Text"] + '</div>');
                 }
                 $('#chatHistory').append(code);
             });
@@ -106,13 +114,13 @@ function AddUser(chatHub, id, name) {
 
     if (userId === id) {
 
-        code = "<div class='loginUser'>" + name + "</div>";
+        code = "<div class='loginUser'><span class='glyphicon glyphicon-user'> " + name + "</span></div>"
     }
     else {
 
-        code = "<div pid='" + id + "' onclick=test('" + id + "','" + name + "')>" + name + "</div>";
+      code = "<div pid='" + id + "' onclick=test('" + id + "','" + name + "') ><span class='glyphicon glyphicon-user' > " + name + "</span></div>";
 
-      //  privateWindow(id, name);
+       
     }
 
     $("#divusers").append(code);
@@ -137,6 +145,7 @@ function AddMessage(userName, message) {
 
 }
 
+/*
 function test(id, name) {
 
     $("#userprivate").text("To: "+  name);
@@ -154,4 +163,4 @@ function test(id, name) {
     });
 
 }
-
+*/

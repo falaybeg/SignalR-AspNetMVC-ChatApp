@@ -9,6 +9,8 @@ namespace SignalR_ChatProject
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery.signalR-2.2.2.js",
+                        "~/Scripts/toastr.js",
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -24,6 +26,9 @@ namespace SignalR_ChatProject
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/chatStyle.css",
+                      "~/Content/notification.css",
+                      "~/Content/toastr.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }

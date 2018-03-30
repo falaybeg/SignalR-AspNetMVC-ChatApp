@@ -19,7 +19,6 @@
     color: brown;
 }
 
-
 .loginUserName {
 
     font-weight: bold;
@@ -30,4 +29,18 @@
     margin-top: 100px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+#notificationPanel {
+    height: 500px;
+    width: 900px;
+    overflow-y: scroll;
+    display: block;
+}
+
+#notiWindow {
+    margin-top: 10px;
+    margin: auto;
+    width: 70%;
+    width: 350px;
 }

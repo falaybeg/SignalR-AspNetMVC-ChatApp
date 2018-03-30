@@ -1,6 +1,7 @@
 ﻿$(function () {
 
     var chatHub = $.connection.chatHub;
+    var notHub = $.connection.notificationHub;
 
     registerClientMethods(chatHub);
 
@@ -13,6 +14,10 @@
         setInterval(function () {
             chatHub.server.getTime();
         }, 1000);
+
+        nothub.client.receiveNotification = function (userame, message) {
+            toastr.info(message);
+        }
 
         registerEvents(chatHub);
 

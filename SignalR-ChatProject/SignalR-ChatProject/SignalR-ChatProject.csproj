@@ -203,21 +203,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803091953082_CreateDatabase.cs" />
-    <Compile Include="Migrations\201803091953082_CreateDatabase.Designer.cs">
-      <DependentUpon>201803091953082_CreateDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803131543234_AddMessagesToDb.cs" />
-    <Compile Include="Migrations\201803131543234_AddMessagesToDb.Designer.cs">
-      <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803280848253_AddNotificationTable.cs" />
-    <Compile Include="Migrations\201803280848253_AddNotificationTable.Designer.cs">
-      <DependentUpon>201803280848253_AddNotificationTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803281101546_UpdateDatabaseUser.cs" />
-    <Compile Include="Migrations\201803281101546_UpdateDatabaseUser.Designer.cs">
-      <DependentUpon>201803281101546_UpdateDatabaseUser.cs</DependentUpon>
+    <Compile Include="Migrations\201904241357275_CreateDatabase.cs" />
+    <Compile Include="Migrations\201904241357275_CreateDatabase.Designer.cs">
+      <DependentUpon>201904241357275_CreateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -235,6 +223,10 @@
     <Content Include="App\chatJS.js" />
     <Content Include="App\dashboardJS.js" />
     <Content Include="App\notificationJS.js" />
+    <Content Include="App_Data\aspnet-SignalR-ChatProject-20180309074226.mdf" />
+    <Content Include="App_Data\aspnet-SignalR-ChatProject-20180309074226_log.ldf">
+      <DependentUpon>aspnet-SignalR-ChatProject-20180309074226.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chatStyle.css" />
@@ -540,7 +532,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="Migrations\201904241357275_CreateDatabase.resx">
+      <DependentUpon>201904241357275_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -553,20 +547,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803091953082_CreateDatabase.resx">
-      <DependentUpon>201803091953082_CreateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803131543234_AddMessagesToDb.resx">
-      <DependentUpon>201803131543234_AddMessagesToDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803280848253_AddNotificationTable.resx">
-      <DependentUpon>201803280848253_AddNotificationTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803281101546_UpdateDatabaseUser.resx">
-      <DependentUpon>201803281101546_UpdateDatabaseUser.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

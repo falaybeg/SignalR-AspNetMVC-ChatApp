@@ -8,7 +8,7 @@ In this repository was written a sample project using SignalR library. The proje
 Only admin only<br/>
 <img src="/images/chat1.PNG"  />
 Admin and user online<br/>
-<img src="/images/chat2.PNG"  />
+<img src="/images/chatmulti.PNG"  />
 Notification Screen <br/>
 <img src="/images/notification.jpg" />
 
